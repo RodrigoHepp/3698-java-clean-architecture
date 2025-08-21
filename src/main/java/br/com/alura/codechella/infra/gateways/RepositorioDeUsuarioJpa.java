@@ -7,6 +7,7 @@ import br.com.alura.codechella.infra.persistence.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
 
@@ -26,6 +27,6 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
 
     @Override
     public List<Usuario> listarTodos() {
-        return List.of();
+        return repositorio.findAll().stream().map(entityMapper::toDomain).collect(Collectors.toList());
     }
 }
